@@ -1,0 +1,41 @@
+{% extends 'users_and_profiles/auth/base.html' %}
+{% block content %}
+    <div class="main-header">
+        <a style="text-decoration: none; color: white;" href="{% url 'friends-list' %}">
+            <i class="fa fa-solid fa-arrow-left return-arrow"></i>
+        </a>
+        <div class="header-item2"><h1>Edit Profile</h1></div>
+    </div>
+    <form method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+        <div class="input-fields-wrapper">
+            <div class="input-group">
+                <label class="input-group__label" for="{{ u_form.email.id_for_label }}">{{ u_form.email.label }}</label>
+                        {{ u_form.email }}
+                        {{ u_form.email.errors }}
+            </div>
+            <div class="input-group">
+                <label class="input-group__label" for="{{ p_form.nickname.id_for_label }}">
+                    {{ p_form.nickname.label }}</label>
+                        {{ p_form.nickname }}
+                        {{ p_form.nickname.errors }}
+            </div>
+            <div class="input-group">
+                <label class="input-group__label" for="{{ p_form.profile_picture.id_for_label }}">
+                    {{ p_form.profile_picture.label }}
+                </label>
+                <div class="custom-file-upload">
+                    <input type="file" id="{{ p_form.profile_picture.id_for_label }}"
+                           name="{{ p_form.profile_picture.name }}" style="display: none;"
+                           onchange="document.getElementById('fileName').textContent = this.files[0].name;">
+                    <label for="{{ p_form.profile_picture.id_for_label }}" class="file-upload-btn">Choose File</label>
+                    <span id="fileName" class="file-name">No File Chosen...</span>
+                </div>
+                {{ p_form.profile_picture.errors }}
+            </div>
+        </div>
+        <div class="submit-wrapper">
+          <button class="submit-button" type="submit">Update</button>
+        </div>
+      </form>
+{% endblock content %}

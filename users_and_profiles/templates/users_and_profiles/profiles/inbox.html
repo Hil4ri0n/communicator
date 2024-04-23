@@ -1,0 +1,32 @@
+{% extends 'users_and_profiles/profiles/base.html' %}
+{% block content %}
+        <div class="main-header">
+            <a style="text-decoration: none; color: white;" href="{% url 'friends-list' %}"><i class="fa fa-solid fa-arrow-left return-arrow"></i></a>
+                <div class="header-item2"><h1>Your Invitations ({{ friend_requests.count }})</h1></div>
+        </div>
+        <div class="friends-list">
+            {% for request in friend_requests %}
+            <div class="friend-box">
+                <div class="friend-image">
+                    <img class="profile-pic" src="{{ request.from_user.profile_picture.url }}">
+                </div>
+                <div class="friend-name">{{ request.from_user.nickname }}</div>
+                <div class="inv-buttons">
+                    <form action="{% url 'accept-friend-request' request.id %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="icon-button">
+                            <i class="fa fa-solid fa-check accept-button"></i>
+                        </button>
+                    </form>
+                    <form action="{% url 'reject-friend-request' request.id %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="icon-button">
+                            <i class="fa fa-solid fa-xmark reject-button"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+{% endblock content %}

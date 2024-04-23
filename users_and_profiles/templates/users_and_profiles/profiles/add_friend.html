@@ -1,0 +1,31 @@
+{% extends 'users_and_profiles/profiles/base.html' %}
+{% block content %}
+    <div class="main-header">
+        <a style="text-decoration: none; color: white;" href="{% url 'friends-list' %}">
+            <i class="fa fa-solid fa-arrow-left return-arrow"></i>
+        </a>
+        <div class="header-item2"><h1>Add Friend</h1></div>
+    </div>
+    <div>
+        <form method="post" action="{% url 'add-friend' %}">
+            {% csrf_token %}
+            <div class="form-container">
+                <div class="input-group">
+                    <label class="input-group__label" for="nickname">Nickname</label>
+                    <input class="input-group__input" type="text" id="nickname" name="nickname">
+                </div>
+            </div>
+
+            <div class="submit-wrapper">
+                <button class="submit-button" type="submit">ADD FRIEND</button>
+            </div>
+        </form>
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+{% endblock content %}

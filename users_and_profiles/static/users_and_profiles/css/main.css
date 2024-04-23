@@ -1,0 +1,232 @@
+@font-face {
+  font-family: 'MavenPro';
+  src: url('../fonts/MavenPro-VariableFont_wght.ttf') format("truetype");
+}
+
+body{
+    /* Designed by Freepik */
+    background: url("../images/auth_background.jpg");
+    background-size: cover;
+    padding-top: 10vh;
+}
+
+.top-container{
+    width: 60%;
+    height: 80vh;
+    margin: auto;
+    display: flex;
+}
+
+.friends-options{
+    width: 40%;
+    border-radius: 20px;
+    margin: 2px;
+    background: rgb(7, 0, 94);
+    color: white;
+    font-family: MavenPro, sans-serif;
+	font-weight: normal;
+    font-size: large;
+    justify-content: center;
+}
+
+.option-box{
+    background-color: rgba(10, 74, 148, 0.34);
+    height: 10vh;
+    border-radius: 10px;
+    margin: 10px auto;
+    display: flex;
+    align-items: center;
+    width: 80%;
+}
+
+.option-box:hover{
+    background-color: rgba(13, 97, 190, 0.34);
+}
+
+.option-box i{
+    margin-left: 5%;
+}
+
+.fa{
+    padding: 20px;
+    font-size: 30px;
+    width: 50px;
+    text-align: center;
+    text-decoration: none;
+}
+
+#plus-icon{
+    margin: 0;
+    margin-left: 3%;
+    padding: 0;
+    position: absolute;
+}
+
+.option-box p{
+    margin: auto;
+}
+
+.container{
+    width: 60%;
+    margin: 2px;
+    border-radius: 20px;
+    background: rgb(7, 0, 94);
+    position: relative;
+	display: block;
+    justify-content: center;
+    color: white;
+	font-family: MavenPro, sans-serif;
+	font-weight: normal;
+}
+
+.header{
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+	justify-content: center;
+    position: relative;
+}
+
+.header p{
+    margin: 0;
+    padding-bottom: 10px;
+    font-weight: normal;
+    font-size: medium;
+}
+
+.header h1{
+    color: #d91d81;
+    margin-bottom: 2px;
+}
+
+.friends-list{
+    margin: 10px auto;
+	position: relative;
+	width: 90%;
+    height: 80%;
+    overflow: hidden;
+    overflow-y: scroll;
+}
+
+::-webkit-scrollbar{
+    width: 10px;
+}
+
+::-webkit-scrollbar-thumb{
+    background-color: #d91d81;
+    border-radius: 10px;
+}
+
+.friend-box{
+	background-color: rgba(10, 74, 148, 0.34);
+    height: 20%;
+    border-radius: 10px;
+    margin: 10px;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.friend-box:hover{
+    background-color: rgba(13, 97, 190, 0.34);
+}
+
+.friend-name{
+    position: absolute;
+    left: 50%;
+    font-size: x-large;
+}
+
+.friend-image{
+    height: 100%;
+    width: auto;
+    display: flex;
+    align-items: center;
+}
+
+.profile-pic{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    margin-left: 3vw;
+    border-radius: 40px;
+}
+
+.online-circle{
+    position: absolute;
+    right: 10%;
+}
+
+
+@media (max-width: 1200px) {
+     body {
+         background: url("../images/auth_background.jpg");
+         background-size: contain;
+         padding-top: 0;
+     }
+
+     .container {
+         width: 90vw;
+     }
+
+     .top-container {
+         flex-direction: column;
+         width: 90vw;
+     }
+
+     .friends-options{
+         width: 90vw;
+         font-size: xx-large;
+     }
+
+     .header{
+         padding: 20px;
+         font-size: xx-large;
+     }
+
+     .header p{
+         font-size: xxx-large;
+     }
+
+     .friend-name{
+         font-size: xx-large;
+     }
+
+     .friend-image{
+         height: 100%;
+         width: auto;
+     }
+
+ }
+
+#logout-option-box{
+    width: 100%;
+}
+
+form{
+    margin: 0;
+}
+
+.logout-button {
+    background: none; /* Remove background */
+    border: none; /* Remove border */
+    color: inherit; /* Inherit text color */
+    font: inherit; /* Inherit font */
+    cursor: pointer; /* Use pointer cursor to indicate clickability */
+    display: flex; /* Flex to align the icon and text */
+    align-items: center; /* Center items vertically */
+    justify-content: center; /* Center items horizontally */
+    padding: 0; /* Adjust padding as necessary to match other .option-box elements */
+    width: 80%; /* Match width of other options for consistency */
+    margin: 0 auto;
+}
+
+.logout-button:hover, .logout-button:focus {
+    /* Optional: Add styles for hover/focus to match your site's interaction design */
+    outline: none; /* Remove focus outline */
+}
+
+.hidden{
+    display: none !important;
+}

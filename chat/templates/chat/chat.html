@@ -1,0 +1,108 @@
+{% extends 'chat/base.html' %}
+{% load static %}
+{% block content %}
+
+    <div class="container">
+        <div class="top-bar">
+            <a style="text-decoration: none; color: white;" href="{% url 'friends-list' %}">
+                <i class="fa-solid fa-arrow-left fa-2xl"></i>
+            </a>
+            <div class="chat-profilepic">
+                <img src="{{ friend_profile.profile_picture.url }}">
+            </div>
+            <h1>{{ friend_profile.nickname }}</h1>
+            <h1 id="online" class="{% if not friend_profile.online %}hidden{% endif %}">Online</h1>
+            <i class="fa-solid fa-ellipsis-vertical fa-2xl" onclick="sideBar('options')"></i>
+        </div>
+        <div class="chat-box">
+            {% for message in messages %}
+                {% if message.sender == friend_profile %}
+                    <div class="message-wrapper">
+                        <div class="message-content">
+                            <p>{{ message.content }}</p>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="message-wrapper">
+                        <div class="user-message-content">
+                            {% if message == message_from_user %}
+                                <p id="last-seen">{{ message.content }}
+                                <i class="fa-solid fa-eye"></i></p>
+                            {% else %}
+                                <p>{{ message.content }}</p>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                {% endif %}
+            {% endfor %}
+        </div>
+        <div class="bottom-wrapper">
+            <div class="typing-message hidden">{{ friend_profile.nickname }} is typing
+                <span class="dot">.</span>
+                <span class="dot">.</span>
+                <span class="dot">.</span>
+            </div>
+            <div class="message-bar">
+                    <div class="message-icons">
+                        <i class="fa-solid fa-image fa-2xl"></i>
+                    </div>
+                    <div class="message-input-wrapper">
+                        <form>
+                            <input id="message-input" type="text">
+                        </form>
+                    </div>
+                    <div class="emoji-icon" id="message-submit">
+                        <i class="fa-solid fa-paper-plane fa-2xl"></i>
+                    </div>
+                    <div class="emoji-icon" onclick="sideBar('emoji')">
+                        <i class="fa-solid fa-icons fa-2xl"></i>
+                    </div>
+            </div>
+        </div>
+    </div>
+    <div class="options-bar hidden" data-visible="false">
+        <div class="side-profilepic">
+            <img src="{{ friend_profile.profile_picture.url }}">
+        </div>
+        <div class="menu-wrapper">
+            <div class="menu-bar" data-unwrapped="false" onclick="menuBar(this)">
+                <p>Dostosuj czat</p>
+                <i class="fa-solid fa-greater-than fa-lg"></i>
+            </div>
+            <div class="menu-list hidden">
+                <div class="menu-list-member" >
+                    <p>Edytuj nicki</p>
+                    <i class="fa-solid fa-pen fa-xl"></i>
+                </div>
+            </div>
+        </div>
+        <div class="menu-wrapper">
+            <div class="menu-bar" data-unwrapped="false" onclick="menuBar(this)">
+                <p>Multimedia i pliki</p>
+                <i class="fa-solid fa-greater-than fa-lg"></i>
+            </div>
+            <div class="menu-list hidden">
+                <div class="menu-list-member">
+                    <p>Multimedia</p>
+                    <i class="fa-solid fa-image fa-xl"></i>
+                </div>
+                <div class="menu-list-member">
+                    <p>Pliki</p>
+                    <i class="fa-regular fa-file fa-xl"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="emoji-bar" data-visible="true">
+        <h1>Emoji</h1>
+    </div>
+
+{% endblock content %}
+{% block javascript %}
+{{ user.profile.id|json_script:"json-user-id"}}
+{{ friend_profile.id|json_script:"json-friend-id"}}
+<script src="{% static 'chat/js/websocket.js' %}"></script>
+
+
+{% endblock javascript %}

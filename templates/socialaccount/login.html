@@ -1,0 +1,56 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+    <head>
+        <link type="text/css" rel="stylesheet" href="{% static 'css/main.css' %}">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Sign In</title>
+    </head>
+
+    <body>
+      {% load account %}
+
+      <!--{% if request.user.is_authenticated%}
+      <div class="flex m-auto border w-[90%] justify-center  bg-blue-200 h-20 rounded rounded-lg">
+
+        <div class="w-[90%] mt-6">
+          <h1 class="ml-3"> Welcome, {% user_display user %}!</h1>
+        </div>
+        <div class=" my-6 hover:text-blue-600">
+          <a href="{% url 'account_logout' %}" class="">Sign Out</a>
+        </div>
+      </div>
+
+      {%else%}
+      <div class="flex m-auto border w-[90%] justify-center  bg-blue-200 h-20 rounded rounded-lg">
+        <p class="mt-6 ml-3"> Hello.</p>
+        <a class="ml-auto mt-6 mr-3" href="{% url 'account_login' %}">Sign in</a>
+      </div>
+      {%endif%}-->
+      <div class="main-container">
+        <div class="main-header">
+            <h1>
+              Google Authentication
+            </h1>
+        </div>
+        <div>
+            <div class="sign-in-info">
+                <h1>Sign In</h1>
+
+                <h2>You are about to use third party authentication!</h2>
+            </div>
+            <form method="post">
+                <div class="submit-wrapper">
+                    {% csrf_token %}
+                    <button type="submit" class="submit-button">Continue</button>
+                </div>
+            </form>
+        </div>
+      </div>
+
+    </body>
+</html>
+
+
+

@@ -1,0 +1,61 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Your Friends</title>
+    <link type="text/css" rel="stylesheet" href="{% static 'users_and_profiles/css/main.css' %}">
+    <script src="https://kit.fontawesome.com/975f0ff2c3.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="top-container">
+        <div class="friends-options">
+            <div class="header">
+                <h1>{{ profile.nickname }}</h1>
+            </div>
+            <a style="text-decoration: none; color: white;" href="{% url 'add-friend' %}"><div class="option-box">
+                    <i class="fa-regular fa-user fa"></i>
+                <p>Add friend</p>
+            </div></a>
+            <a style="text-decoration: none; color: white;" href="{% url 'inbox' %}"><div class="option-box">
+                <i class="fa-regular fa-envelope fa"></i>
+                <p>Invites</p>
+            </div></a>
+            <a style="text-decoration: none; color: white;" href="{% url 'edit-profile' %}"><div class="option-box">
+                <i class="fa-regular fa-pen-to-square fa"></i>
+                <p>Edit profile</p>
+            </div></a>
+            <form method="post" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button class="logout-button">
+                    <div class="option-box" id="logout-option-box">
+                        <i class="fa-solid fa-right-from-bracket fa"></i>
+                        <p>Logout</p>
+                    </div>
+                </button>
+            </form>
+        </div>
+        <div class="container">
+            <div class="header">
+                <h1>Friends</h1>
+            </div>
+            <div class="friends-list">
+                {% for friend in friends %}
+                <a style="text-decoration: none; color: white;" href="{% url 'chat' friend_id=friend.id %}">
+                    <div class="friend-box" data-profile_id="{{ friend.id }}">
+                        <div class="friend-image">
+                            <img class="profile-pic" src="{{ friend.profile_picture.url }}">
+                        </div>
+                        <div class="friend-name">{{ friend.nickname }}</div>
+                        <i class="fa fa-solid fa-circle fa-2xl online-circle
+                        {% if friend.online == False %}hidden{% endif %}" style="color: #63E6BE;"></i>
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</body>
+{{ user.profile.id|json_script:"json-user-id"}}
+<script src="{% static 'users_and_profiles/js/onlineStatus.js' %}"></script>
+</html>

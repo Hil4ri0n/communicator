@@ -1,0 +1,46 @@
+{% extends 'users_and_profiles/auth/base.html' %}
+{% block content %}
+    <div class="main-header">
+        <h1>Register</h1>
+    </div>
+    <div class="auth-content">
+        <form method="POST">
+                {% csrf_token %}
+            <div class="input-fields-wrapper">
+                {{ form.non_field_errors }}
+                <!--<div class="input-group">
+                    <label class="input-group__label" for="{{ form.username.id_for_label }}">Login</label>
+                    {{ form.username }}
+                    {{ form.username.errors }}
+                </div>-->
+                <div class="input-group">
+                   <label class="input-group__label" for="{{ form.email.id_for_label }}">Email</label>
+                    {{ form.email }}
+                    {{ form.email.errors }}
+                </div>
+                <div class="input-group">
+                    <label class="input-group__label" for="{{ form.password1.id_for_label }}">Password</label>
+                    {{ form.password1 }}
+                    {{ form.password1.errors }}
+                </div>
+                <div class="input-group">
+                   <label class="input-group__label" for="{{ form.password2.id_for_label }}">Repeat Password</label>
+                    {{ form.password2 }}
+                    {{ form.password2.errors }}
+                </div>
+                <div class="input-group">
+                    <label class="input-group__label" for="{{ form.nickname.id_for_label }}">Nickname</label>
+                    {{ form.nickname }}
+                    {{ form.nickname.errors }}
+                </div>
+            </div>
+            <div class="submit-wrapper">
+                <button class="submit-button" type="submit">REGISTER</button>
+            </div>
+            <div class="input-fields-wrapper">
+                <a class="signin-link" href="{% url 'login' %}"><p>Sign In</p></a>
+            </div>
+        </form>
+    </div>
+
+{% endblock %}

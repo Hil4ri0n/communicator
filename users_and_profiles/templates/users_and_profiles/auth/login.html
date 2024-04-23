@@ -1,0 +1,40 @@
+{% extends 'users_and_profiles/auth/base.html' %}
+{% block content %}
+    <div class="main-header">
+        <h1>Login</h1>
+    </div>
+    <div class="auth-content">
+        <form method="POST">
+                {% csrf_token %}
+                <div class="input-fields-wrapper">
+                    {{ form.non_field_errors }}
+                    <div class="input-group">
+                        <label class="input-group__label" for="{{ form.username.id_for_label }}">Login</label>
+                        {{ form.username }}
+                        {{ form.username.errors }}
+                    </div>
+                    <div class="input-group">
+                       <label class="input-group__label" for="{{ form.password.id_for_label }}">Password</label>
+                        {{ form.password }}
+                        {{ form.password.errors }}
+                    </div>
+                    <h3 id="social-media-header">Login using social media account</h3>
+                    {% load socialaccount %}
+                    <div class="social-media-buttons">
+                        <div class="social-media-button">
+                            <a href="#" class="fa fa-facebook"></a>
+                        </div>
+                        <div class="social-media-button">
+                            <a href="{% provider_login_url 'google' %}" class="fa fa-google"></a>
+                        </div>
+                    </div>
+                </div>
+            <div class="submit-wrapper">
+                <button class="submit-button" type="submit">LOGIN</button>
+            </div>
+            <div class="input-fields-wrapper">
+                <a class="signin-link" href="{% url 'register' %}"><p>Don't have an account?</p></a>
+            </div>
+        </form>
+    </div>
+{% endblock %}
